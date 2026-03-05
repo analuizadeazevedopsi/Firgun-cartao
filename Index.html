@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Firgun • Cartão Digital</title>
+  <meta name="description" content="Firgun Clínica Integrativa • Ana Luiza A. de Azevedo • Psicóloga • CRP 01/28457" />
+
+  <style>
+    :root{
+      --bg1:#f6f3ff;
+      --bg2:#eef6ff;
+      --ink:#1e1b2e;
+      --muted:#5b5673;
+      --card:rgba(255,255,255,.70);
+      --stroke:rgba(90,80,130,.18);
+      --shadow: 0 16px 40px rgba(24, 16, 60, .12);
+      --radius: 22px;
+
+      --brand1:#7b61ff;
+      --brand2:#2aa7ff;
+
+      --wa:#25D366;
+      --ig1:#f58529;
+      --ig2:#dd2a7b;
+      --ig3:#8134af;
+      --ig4:#515bd4;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--ink);
+      min-height:100svh;
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(123,97,255,.22), transparent 55%),
+        radial-gradient(1200px 700px at 85% 20%, rgba(42,167,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 50% 90%, rgba(123,97,255,.12), transparent 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      display:flex;
+      justify-content:center;
+      padding: 22px 14px 36px;
+    }
+
+    .wrap{
+      width:min(560px, 100%);
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero{
+      padding: 22px 18px 16px;
+      position:relative;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-80px -40px auto -40px;
+      height: 180px;
+      background: radial-gradient(closest-side, rgba(123,97,255,.18), transparent 70%);
+      pointer-events:none;
+      filter: blur(2px);
+    }
+
+    .brandRow{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(123,97,255,.20), rgba(42,167,255,.18));
+      border: 1px solid rgba(90,80,130,.18);
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+
+    /* Se você tiver a logo em PNG/SVG, substitua o conteúdo da .logo por <img> */
+    .logo svg{ width:34px; height:34px; opacity:.92; }
+
+    .brandText{
+      line-height:1.05;
+    }
+    .brandText .firgun{
+      font-weight:800;
+      letter-spacing:.3px;
+      font-size: 20px;
+      background: linear-gradient(90deg, var(--brand1), var(--brand2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .brandText .sub{
+      margin-top:6px;
+      font-size: 12.5px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .titleBlock{
+      margin-top:16px;
+      text-align:center;
+      padding: 0 6px;
+    }
+    .titleBlock .service{
+      font-weight: 800;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      font-size: 18px;
+      color: rgba(30,27,46,.92);
+    }
+    .titleBlock .name{
+      margin-top:10px;
+      font-size: 26px;
+      font-weight: 850;
+      letter-spacing:.2px;
+    }
+    .titleBlock .cred{
+      margin-top:6px;
+      color: var(--muted);
+      font-size: 14.5px;
+      font-weight: 600;
+    }
+
+    .pillList{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:center;
+    }
+    .pill{
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(90,80,130,.16);
+      background: rgba(255,255,255,.55);
+      color: rgba(30,27,46,.88);
+      font-weight: 600;
+    }
+
+    .actions{
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(90,80,130,.14);
+      background: rgba(255,255,255,.70);
+      text-decoration:none;
+      color: var(--ink);
+      box-shadow: 0 10px 20px rgba(24, 16, 60, .06);
+      transition: transform .08s ease, box-shadow .18s ease, border-color .18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn:active{ transform: scale(.99); }
+    .btn:hover{
+      box-shadow: 0 16px 26px rgba(24, 16, 60, .10);
+      border-color: rgba(90,80,130,.22);
+    }
+
+    .btn .left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .icon{
+      width:44px;
+      height:44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.7);
+    }
+    .icon svg{ width:22px; height:22px; }
+
+    .btn .txt{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+      min-width:0;
+    }
+    .btn .txt .h{
+      font-weight: 800;
+      font-size: 15.5px;
+      line-height:1.1;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .btn .txt .p{
+      color: var(--muted);
+      font-size: 13.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .chev{
+      opacity:.55;
+      font-weight:900;
+      font-size: 18px;
+      flex:0 0 auto;
+    }
+
+    .btn-wa{
+      background: linear-gradient(135deg, rgba(37,211,102,.16), rgba(255,255,255,.75));
+      border-color: rgba(37,211,102,.22);
+    }
+    .btn-wa .icon{
+      background: rgba(37,211,102,.15);
+      border-color: rgba(37,211,102,.22);
+    }
+
+    .btn-ig{
+      background: linear-gradient(135deg, rgba(221,42,123,.12), rgba(255,255,255,.75));
+      border-color: rgba(221,42,123,.18);
+    }
+    .btn-ig .icon{
+      background: linear-gradient(135deg, rgba(245,133,41,.20), rgba(221,42,123,.16), rgba(129,52,175,.14), rgba(81,91,212,.12));
+      border-color: rgba(221,42,123,.18);
+    }
+
+    .btn-map{
+      background: linear-gradient(135deg, rgba(123,97,255,.12), rgba(255,255,255,.75));
+      border-color: rgba(123,97,255,.18);
+    }
+
+    .footer{
+      padding: 0 14px 16px;
+      color: rgba(91,86,115,.9);
+      font-size: 12.5px;
+      text-align:center;
+    }
+
+    .qrBlock{
+      margin-top: 8px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      padding: 14px;
+    }
+    .qr{
+      width: 140px;
+      height: 140px;
+      border-radius: 18px;
+      border: 1px solid rgba(90,80,130,.18);
+      background: rgba(255,255,255,.75);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+    .qr img{ width: 100%; height: 100%; object-fit: cover; }
+
+    .qrText{
+      max-width: 290px;
+      text-align:left;
+    }
+    .qrText .h{
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .qrText .p{
+      font-size: 13px;
+      color: var(--muted);
+      line-height:1.35;
+      margin:0;
+    }
+
+    /* CTA fixo no rodapé (opcional): mantém o WhatsApp sempre à mão */
+    .stickyCta{
+      position: sticky;
+      bottom: 10px;
+      z-index: 9;
+      padding: 0 4px;
+    }
+    .stickyCta .btn{
+      border-radius: 999px;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(37,211,102,.95), rgba(37,211,102,.82));
+      color: #0b2a16;
+      border: 0;
+      box-shadow: 0 16px 30px rgba(37,211,102,.25);
+    }
+    .stickyCta .btn .txt .h, .stickyCta .btn .txt .p{ color:#063012; }
+    .stickyCta .icon{
+      background: rgba(255,255,255,.35);
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .btn{ transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap" aria-label="Cartão digital Firgun">
+    <section class="card hero">
+      <div class="brandRow">
+        <div class="logo" aria-label="Logo Firgun (placeholder)">
+          <!-- Ícone placeholder (substitua por sua logo quando quiser) -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2c3.7 0 6.7 3 6.7 6.7 0 5.1-4.7 8.4-6.7 12.6C10 17.1 5.3 13.8 5.3 8.7 5.3 5 8.3 2 12 2Z" stroke="rgba(30,27,46,.72)" stroke-width="1.6"/>
+            <path d="M12 6.2c1.5 0 2.7 1.2 2.7 2.7S13.5 11.6 12 11.6 9.3 10.4 9.3 8.9 10.5 6.2 12 6.2Z" fill="rgba(42,167,255,.55)"/>
+          </svg>
+        </div>
+
+        <div class="brandText">
+          <div class="firgun">Firgun</div>
+          <div class="sub">Clínica Integrativa</div>
+        </div>
+      </div>
+
+      <div class="titleBlock">
+        <div class="service">Psicologia Clínica</div>
+        <div class="name">Ana Luiza A. de Azevedo</div>
+        <div class="cred">Psicóloga • CRP 01/28457</div>
+
+        <div class="pillList" aria-label="Benefícios">
+          <div class="pill">Atendimento especializado</div>
+          <div class="pill">Escuta e acolhimento</div>
+          <div class="pill">Autoconhecimento</div>
+          <div class="pill">Desenvolvimento emocional</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card actions" aria-label="Ações">
+      <!-- BOTÃO WHATSAPP (clicável e responsivo) -->
+      <a class="btn btn-wa"
+         href="https://wa.me/5561981031398?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20na%20Firgun%20Cl%C3%ADnica%20Integrativa."
+         target="_blank" rel="noopener"
+         aria-label="Agendar consulta pelo WhatsApp">
+        <div class="left">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 11.7a8 8 0 0 1-11.8 7L4 20l1.4-4.1A8 8 0 1 1 20 11.7Z" stroke="#0b2a16" stroke-width="1.6" />
+              <path d="M10 9.2c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.3l.6 1.4c.1.2.1.4 0 .6l-.4.6c-.1.2-.1.4.1.6.6.9 1.4 1.6 2.4 2.1.2.1.4.1.6 0l.7-.3c.2-.1.4-.1.6 0l1.5.7c.2.1.3.3.3.5v.4c0 .3-.1.6-.4.7-.4.2-1.2.4-2.2.1-1.1-.3-2.5-1.1-3.8-2.4-1.2-1.2-2.1-2.7-2.4-3.8-.3-1 0-1.8.2-2.2Z" fill="#0b2a16" opacity=".9"/>
+            </svg>
+          </div>
+          <div class="txt">
+            <div class="h">Agendar pelo WhatsApp</div>
+            <div class="p">Toque para abrir a conversa</div>
+          </div>
+        </div>
+        <div class="chev" aria-hidden="true">›</div>
+      </a>
+
+      <!-- INSTAGRAM -->
+      <a class="btn btn-ig"
+         href="https://instagram.com/firgun_terapias"
+         target="_blank" rel="noopener"
+         aria-label="Abrir Instagram da Firgun">
+        <div class="left">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7.5 3.5h9A4 4 0 0 1 20.5 7.5v9a4 4 0 0 1-4 4h-9a4 4 0 0 1-4-4v-9a4 4 0 0 1 4-4Z" stroke="rgba(30,27,46,.85)" stroke-width="1.6"/>
+              <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" stroke="rgba(30,27,46,.85)" stroke-width="1.6"/>
+              <path d="M17.2 6.9h.01" stroke="rgba(30,27,46,.85)" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="txt">
+            <div class="h">@firgun_terapias</div>
+            <div class="p">Siga e acompanhe conteúdos</div>
+          </div>
+        </div>
+        <div class="chev" aria-hidden="true">›</div>
+      </a>
+
+      <!-- MAPA -->
+      <a class="btn btn-map"
+         href="https://maps.google.com/?q=CNB+01+Lotes+6%2F7+Sala+204+Taguatinga+DF"
+         target="_blank" rel="noopener"
+         aria-label="Abrir localização no Google Maps">
+        <div class="left">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z" stroke="rgba(30,27,46,.85)" stroke-width="1.6"/>
+              <path d="M12 9.5a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6Z" fill="rgba(123,97,255,.35)" stroke="rgba(30,27,46,.0)"/>
+            </svg>
+          </div>
+          <div class="txt">
+            <div class="h">Como chegar</div>
+            <div class="p">CNB 01 Lotes 6/7 sala 204 • Taguatinga – DF</div>
+          </div>
+        </div>
+        <div class="chev" aria-hidden="true">›</div>
+      </a>
+
+      <!-- QR (opcional) apontando para o WhatsApp -->
+      <div class="qrBlock" aria-label="QR Code para WhatsApp">
+        <div class="qr" aria-hidden="true">
+          <img alt="QR Code para WhatsApp"
+               src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fwa.me%2F5561981031398%3Ftext%3DOl%25C3%25A1%252C%2520gostaria%2520de%2520agendar%2520uma%2520consulta%2520na%2520Firgun%2520Cl%25C3%25ADnica%2520Integrativa."
+          />
+        </div>
+        <div class="qrText">
+          <div class="h">Preferir por QR Code?</div>
+          <p class="p">
+            Aponte a câmera para o QR e inicie a conversa no WhatsApp.
+            Ideal para impressão, recepção e cartão físico.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Firgun Clínica Integrativa • (a 300 m do metrô) • Brasília/DF<br/>
+      <strong>Telefone/WhatsApp:</strong> 61 98103-1398
+    </div>
+
+    <!-- CTA fixo (WhatsApp) sempre visível -->
+    <div class="stickyCta" aria-label="Agendar fixo">
+      <a class="btn"
+         href="https://wa.me/5561981031398?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20na%20Firgun%20Cl%C3%ADnica%20Integrativa."
+         target="_blank" rel="noopener">
+        <div class="left">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 11.7a8 8 0 0 1-11.8 7L4 20l1.4-4.1A8 8 0 1 1 20 11.7Z" stroke="#063012" stroke-width="1.6" />
+            </svg>
+          </div>
+          <div class="txt">
+            <div class="h">Agendar agora no WhatsApp</div>
+            <div class="p">Clique para abrir a conversa</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
